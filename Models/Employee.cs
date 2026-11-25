@@ -1,3 +1,4 @@
+using System;
 using System.ComponentModel.DataAnnotations;
 
 namespace EmployeeManagerApp.Models
@@ -15,5 +16,16 @@ namespace EmployeeManagerApp.Models
 
         [Range(1, 1000000)]
         public decimal Salary { get; set; }
+
+        // --- NEW BUSINESS LOGIC FOR TESTING ---
+        public decimal CalculateAnnualBonus()
+        {
+            if (Salary < 0)
+            {
+                throw new ArgumentException("Salary cannot be negative.");
+            }
+            // Bonus is 10% of the salary
+            return Salary * 0.10m;
+        }
     }
 }
